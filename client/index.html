@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>urbanMirror</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='js/mqtt.min.js'></script>
+</head>
+<body>
+
+<script>
+console.log("creating mqtt client");
+const client = mqtt.connect("ws://localhost");
+
+console.log("subscribing to 'mqtt/demo'");
+client.subscribe("mqtt/demo");
+
+console.log("event listener on 'message'");
+client.on('message', function (topic, payload) {
+    console.log([topic, payload].join(": "));
+});
+console.log("EOT");
+</script>
+</body>
+</html>
